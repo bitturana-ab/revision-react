@@ -2,6 +2,7 @@ import {  useCallback,useEffect,useRef,useState } from 'react'
 import './App.css'
 
 function App() {
+  const [copyBtn,setCopyBtn] = useState("copy");
   const [lenght ,setLength] = useState(8);
   const [password,setPassword] = useState('');
   const [numberAllowed,setNumberAllowed] = useState(false);
@@ -30,6 +31,8 @@ function App() {
   const passwordRef = useRef(null);
   // copy to clipboard access from window dom
   const copyToClip =useCallback(()=>{
+    // change btn name useState
+    setCopyBtn("copied!")
     // select password effect
     passwordRef.current?.select();
     window.navigator.clipboard.writeText(password);
@@ -51,7 +54,7 @@ function App() {
               />
               <button 
               onClick={copyToClip}
-              className='ouline-none bg-blue-700 text-white px-4 py-1.5 shrink-0'>copy</button>
+              className='ouline-none bg-blue-700 text-white px-4 py-1.5 shrink-0'>{copyBtn}</button>
           </div>
           <div className='flex text-sm gap-x-2'>
             <div className='flex item-center text-white gap-x-1'>
